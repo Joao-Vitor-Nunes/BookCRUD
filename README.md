@@ -30,5 +30,4 @@ Aplicativo fullstack simples para gerenciar livros favoritos e fazer avaliaçõe
 
 ---
 
-## 📂 Estrutura de Pastas
 
