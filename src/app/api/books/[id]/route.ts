@@ -3,12 +3,13 @@ import { prisma } from '../../../../../lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
 // Atualizar livro
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest) {
+  const id = request.nextUrl.pathname.split('/').pop() // extrai o ID da URL
   const data = await request.json()
 
   try {
     const book = await prisma.book.update({
-      where: { id: params.id },
+      where: { id },
       data,
     })
 
@@ -19,10 +20,12 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 }
 
 // Deletar livro
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest) {
+  const id = request.nextUrl.pathname.split('/').pop() // extrai o ID da URL
+
   try {
     await prisma.book.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json({ message: 'Livro deletado com sucesso!' })
